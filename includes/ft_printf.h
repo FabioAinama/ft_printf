@@ -4,7 +4,6 @@
 # include <stdint.h>
 # include <wchar.h>
 # include <stdarg.h>
-# include "../libft/libft.h"
 
 typedef struct	s_printf_arg
 {

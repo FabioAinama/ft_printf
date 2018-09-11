@@ -50,6 +50,7 @@ int ft_printf(const char *format, ...)
 	t_printf_arg *args;
 
 	i = -1;
+	length = 0;
 	va_start(list, format);
 	while (format[++i])
 	{
@@ -58,9 +59,10 @@ int ft_printf(const char *format, ...)
 			if (!(args = new_printf_args()))
 				return (-1);
 			i = i + get_flags(args, (format + i));
-			length = ft_dispatcher(args, list);
+			length += ft_dispatcher(args, list);
 		}
 		ft_putchar(format[i]);
+		length++;
 	}
 	va_end(list);
 	return (length);
