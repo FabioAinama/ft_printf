@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include "libft.h"
 
 int get_alpha_flags(t_printf_arg *args, const char *format, int i)
 {

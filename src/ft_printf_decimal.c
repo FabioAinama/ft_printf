@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include "libft.h"
 
 int	ft_deal_zero(t_printf_arg *args)
 {
