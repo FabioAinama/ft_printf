@@ -29,7 +29,6 @@ int			ft_printf_udecimal(t_printf_arg *args, va_list list);
 int			ft_printf_octal(t_printf_arg *args, va_list list);
 int			ft_printf_hexa(t_printf_arg *args, va_list list);
 int			ft_printf_char(t_printf_arg *args, va_list list);
-// void		ft_deal_number(t_printf_arg *args, intmax_t nb);
 int			ft_deal_number_str(t_printf_arg *args, uintmax_t nb, int base);
 void		ft_printf_float(t_printf_arg *args, double nb);
 int			ft_printf_str(t_printf_arg *args, va_list list);
@@ -52,7 +51,5 @@ size_t		ft_wstrlen(const wchar_t *wstr);
 wchar_t		*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len);
 wchar_t		*ft_wstrnew(size_t size);
 int			ft_putwchar(wchar_t wchar);
-
-// void		ft_print_all_flags(t_printf_arg *args);
 
 #endif

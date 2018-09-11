@@ -6,14 +6,14 @@ int				ft_dispatcher(t_printf_arg *args, va_list list)
 	int i;
 
 	i = 0;
-	if (args->type == 'd' || args->type == 'u')
+	if (args->type == 'd')
 		i = ft_printf_decimal(args, list);
 	else if (args->type == 'u')
-		i = ft_printf_udecimal(args, list);		
+		i = ft_printf_udecimal(args, list);
 	else if (args->type == 'x' || args->type == 'p')
 		i = ft_printf_hexa(args, list);
 	else if (args->type == 'o')
-		i = ft_printf_octal(args, list);		
+		i = ft_printf_octal(args, list);
 	else if (args->type == 'c')
 		i = ft_printf_char(args, list);
 	else if (args->type == 's')
@@ -54,13 +54,14 @@ int				ft_printf(const char *format, ...)
 	va_start(list, format);
 	while (format[++i])
 	{
-		if (format[i] == '%' && format[++i] != '%' && format[i] != '\0')
+		if (format[i] == '%' && format[i + 1] != '%' && format[i + 1] != '\0')
 		{
 			if (!(args = new_printf_args()))
 				return (-1);
-			i = i + get_flags(args, (format + i));
+			i += get_flags(args, (format + i + 1));
 			length += ft_dispatcher(args, list);
 		}
+		i += ((format[i] == '%' && format[i + 1] == '%') ? 1 : 0);
 		ft_putchar(format[i]);
 		length++;
 	}
