@@ -13,20 +13,26 @@
 NAME = libftprintf.a
 
 FLAGS = -Wall -Wextra -Werror
+INC = -Iincludes/
 
 SRC_FOLDER = src/
+LIBFT_FOLDER = libft/
 
-SRC_FILES = ft_printf.c ft_printf_decimal.c get_flags.c ft_printf_str.c\
-	ft_printf_char.c ft_convert.c ft_putlnbr.c ft_printf_float.c\
-	ft_printf_hexa.c ft_printf_octal.c ft_utils.c\
+SRC_FILES = ft_printf.c ft_printf_decimal.c get_flags.c ft_printf_str.c ft_printf_char.c\
+	ft_convert.c ft_putlnbr.c ft_printf_float.c ft_printf_hexa.c ft_printf_octal.c ft_utils.c\
+
+LIBFT_FILES = ft_putchar.c ft_putstr.c ft_tolower.c ft_isdigit.c ft_atoi.c ft_isalpha.c\
+	ft_strdup.c ft_strlen.c ft_strnew.c ft_putnbr.c ft_memalloc.c
 
 SRC = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
+LIBFT = $(addprefix $(LIBFT_FOLDER), $(LIBFT_FILES))
 
-OBJ = $(SRC_FILES:.c=.o)
+OBJ = $(SRC_FILES:.c=.o) $(LIBFT_FILES:.c=.o)
+
 
 $(NAME):
 	@echo "Compilation en cours..."
-	gcc -c $(FLAGS) $(SRC) -L./libft/ -lft
+	gcc -c $(FLAGS) $(SRC) $(LIBFT) $(INC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(NAME) générée avec succès"
