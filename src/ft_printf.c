@@ -17,7 +17,7 @@ int				ft_dispatcher(t_printf_arg *args, va_list list)
 	else if (args->type == 'c')
 		i = ft_printf_char(args, list);
 	else if (args->type == 's')
-		ft_printf_str(args, list);
+		i = ft_printf_str(args, list);
 	else if (args->type == 'f')
 		ft_printf_float(args ,va_arg(list, double));
 	return (i);
@@ -42,7 +42,7 @@ t_printf_arg	*new_printf_args(void)
 	return (args);
 }
 
-int ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	int i;
 	int length;

@@ -55,14 +55,14 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 		if (args->set_precision)
 			return (0);
 	}
-	length = ft_strlen(str);
-	args->length = length;
-	precision = (args->precision == 0 ? length : args->precision);
+	args->length = ft_strlen(str);
+	precision = (args->precision == 0 ? args->length : args->precision);
+	length = precision;
 	if (!(args->flag_minus))
-		length = ((args->width == 0) ? 0 : ft_deal_width(args));
+		length += ((args->width == 0) ? 0 : ft_deal_width(args));
 	while (str[++i] && precision--)
 		ft_putchar(str[i]);
 	if (args->flag_minus)
-		length = ((args->width == 0) ? 0 : ft_deal_width(args));
-	return (length + i);
+		length += ((args->width == 0) ? 0 : ft_deal_width(args));
+	return (length);
 }
