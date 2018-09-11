@@ -46,7 +46,7 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 	char	*cpy;
 
 	if (args->conv_s == 'l')
-		return ft_printf_wstr(args, list);
+		return (ft_printf_wstr(args, list));
 	if (!(str = va_arg(list, char *)))
 		str =  ft_strdup("(null)");
 	if (args->set_precision)

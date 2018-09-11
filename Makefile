@@ -20,7 +20,7 @@ SRC_FILES = ft_printf.c ft_printf_decimal.c get_flags.c ft_printf_str.c ft_print
 
 LIBFT_FILES = ft_putchar.c ft_putstr.c ft_tolower.c ft_isdigit.c ft_atoi.c ft_isalpha.c\
 	ft_strdup.c ft_strlen.c ft_strnew.c ft_putnbr.c ft_memalloc.c ft_strcpy.c ft_bzero.c\
-	ft_strncpy.c
+	ft_strncpy.c\
 
 SRC = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
 LIBFT = $(addprefix $(LIBFT_FOLDER), $(LIBFT_FILES))
