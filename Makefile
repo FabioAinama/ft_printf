@@ -29,7 +29,6 @@ OBJ = $(SRC_FILES:.c=.o) $(LIBFT_FILES:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 INC = -Iincludes/
 
-
 $(NAME):
 	@echo "Compilation en cours..."
 	@gcc -c $(FLAGS) $(SRC) $(LIBFT) $(INC)
@@ -37,15 +36,14 @@ $(NAME):
 	@ranlib $(NAME)
 	@echo "$(NAME) générée avec succès"
 
-all:
-	$(NAME)
+.PHONY: all clean fclean re
 
-clean:
+all : $(NAME)
+
+clean :
 	@rm -rf $(OBJ)
 
-fclean: clean
+fclean : clean
 	@rm -rf $(NAME)
 
-re: fclean all
-
-.PHONY: all clean fclean re
+re : fclean all

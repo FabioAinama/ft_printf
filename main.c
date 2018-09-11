@@ -41,10 +41,10 @@ int    main()
     // String
     // printf("Return O: %d\n", printf("Real (null).3: %.3s\n", s4));
     // printf("Return C: %d\n", ft_printf("Fake (null).3: %.3s\n", s4));
-    printf("Return O: %d\n", printf("R: %s\n", s4));
-    printf("Return C: %d\n", ft_printf("F: %s\n", s4));
-    printf("Return O: %d\n", printf("R: %s\n", s2));
-    printf("Return C: %d\n", ft_printf("F: %s\n", s2));
+    // printf("Return O: %d\n", printf("R: %s\n", s4));
+    // printf("Return C: %d\n", ft_printf("F: %s\n", s4));
+    // printf("Return O: %d\n", printf("R: %s\n", s2));
+    // printf("Return C: %d\n", ft_printf("F: %s\n", s2));
     // printf("Return O: %d\n", printf("Real (null): %s\n", s4));
     // printf("Return C: %d\n", ft_printf("Fake (null): %s\n", s4));
     // NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -91,28 +91,28 @@ int    main()
     // ft_printf("Fake o: %lo\n", 42);
 
     // Decimal 4294967254
-    // printf("Real d: %-+9.6d\n", (int)ui);
-    // ft_printf("Fake d: %-+9.6d\n", (int)ui);
-    // printf("Real d: %-9.6d\n", (int)ui);
-    // ft_printf("Fake d: %-9.6d\n", (int)ui);
-    // printf("Real +6.4d: %+6.4d\n", 42);
-    // ft_printf("Fake +6.4d: %0+6.4d\n", 42);
-    // printf("Real +6.1d: %+6.1d\n", 42);
-    // ft_printf("Fake +6.1d: %0+6.1d\n", 42);
-    // printf("Real 0+8d: %0+8d\n", 42);
-    // ft_printf("Fake 0+8d: %0+8d\n", 42);
-    // printf("Real: %+.4d\n", 42);
-    // ft_printf("Fake: %+.4d\n", 42);
-    // printf("Real +8.4: %+8.4d\n", -42);
-    // ft_printf("Fake +8.4: %+8.4d\n", -42);
-    // printf("Real: %d\n", 4294967254);
-    // ft_printf("Fake: %d\n", 4294967254);
-    // printf("Real: %d\n", 2147483649);
-    // ft_printf("Fake: %d\n", 2147483649);
-    // printf("Real: %d\n", -4294967254);
-    // ft_printf("Fake: %d\n", -4294967254);
-    // printf("Real: %d\n", -2147483649);
-    // ft_printf("Fake: %d\n", -2147483649);
+    // printf("R: %d\n", printf("Real d: %-+9.6d\n", (int)ui));
+    // printf("R: %d\n", ft_printf("Fake d: %-+9.6d\n", (int)ui));
+    // printf("R: %d\n", printf("Real d: %-9.6d\n", (int)ui));
+    // printf("R: %d\n", ft_printf("Fake d: %-9.6d\n", (int)ui));
+    // printf("R: %d\n", printf("Real +6.4d: %+6.4d\n", 42));
+    // printf("R: %d\n", ft_printf("Fake +6.4d: %0+6.4d\n", 42));
+    // printf("R: %d\n", printf("Real +6.1d: %+6.1d\n", 42));
+    // printf("R: %d\n", ft_printf("Fake +6.1d: %0+6.1d\n", 42));
+    // printf("R: %d\n", printf("Real 0+8d: %0+8d\n", 42));
+    // printf("R: %d\n", ft_printf("Fake 0+8d: %0+8d\n", 42));
+    // printf("R: %d\n", printf("Real: %+.4d\n", 42));
+    // printf("R: %d\n", ft_printf("Fake: %+.4d\n", 42));
+    // printf("R: %d\n", printf("Real +8.4: %+8.4d\n", -42));
+    // printf("R: %d\n", ft_printf("Fake +8.4: %+8.4d\n", -42));
+    // printf("R: %d\n", printf("Real: %d\n", 4294967254));
+    // printf("R: %d\n", ft_printf("Fake: %d\n", 4294967254));
+    // printf("R: %d\n", printf("Real: %d\n", 2147483649));
+    // printf("R: %d\n", ft_printf("Fake: %d\n", 2147483649));
+    // printf("R: %d\n", printf("Real: %d\n", -4294967254));
+    // printf("R: %d\n", ft_printf("Fake: %d\n", -4294967254));
+    // printf("R: %d\n", printf("Real: %d\n", -2147483649));
+    // printf("R: %d\n", ft_printf("Fake: %d\n", -2147483649));
 
     // %u
     // printf("Real: %u\n", 4294967254);
