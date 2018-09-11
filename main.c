@@ -20,6 +20,13 @@ int    main()
     s2 = "Fabiooooo";
     s3 = 'A';
 
+    // printf("%x\n", 42);
+    // ft_printf("%x\n", 42);
+    printf("R: %d\n", printf("%x\n", 42));
+    printf("F: %d\n", ft_printf("%x\n", 42));
+    // printf("R: %d\n", );
+    // printf("F: %d\n", );
+
     // Char
     // printf("Return O: %d\n", printf("Real 6c: %6c\n", 65));
     // printf("Return C: %d\n", ft_printf("Fake 6c: %6c\n", 65));

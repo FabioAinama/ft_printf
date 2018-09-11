@@ -41,6 +41,11 @@ $(NAME):
 
 all : $(NAME)
 
+cp : 
+	gcc main.c $(SRC) -L libft/ -lft $(INC)
+run : 
+	./a.out | cat -e
+
 clean :
 	@rm -rf $(OBJ)
 

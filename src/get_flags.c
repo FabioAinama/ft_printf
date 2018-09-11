@@ -49,6 +49,8 @@ int get_alpha_flags(t_printf_arg *args, const char *format, int i)
 		(format[i] == 'C') ? args->conv_s = 'l' : 0;		
 		args->type = 'c';
 	}
+	else if (format[i] == '%')
+		args->type = '%';
 	return (i); 
 	// i à incrémenter ici
 }

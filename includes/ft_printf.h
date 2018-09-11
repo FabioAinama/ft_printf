@@ -5,6 +5,8 @@
 # include <wchar.h>
 # include <stdarg.h>
 
+# include <stdio.h>
+
 typedef struct	s_printf_arg
 {
 	int flag_hash;
@@ -51,5 +53,7 @@ size_t		ft_wstrlen(const wchar_t *wstr);
 wchar_t		*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len);
 wchar_t		*ft_wstrnew(size_t size);
 int			ft_putwchar(wchar_t wchar);
+
+void	ft_print_all_flags(t_printf_arg *args);
 
 #endif

@@ -133,7 +133,7 @@ int	ft_deal_number_str(t_printf_arg *args, uintmax_t nb, int base)
 	char	*str_nb;
 
 	if (args->type == 'x' || args->type == 'X')
-		str_nb = ft_convert_base_hexa(nb, args->type);
+		str_nb = ft_strdup(ft_convert_base_hexa(nb, args->conv_s));
 	else
 		str_nb = ft_convert_base_str(nb, base);
 	args->length = ft_get_length(nb, base);

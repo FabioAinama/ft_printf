@@ -42,10 +42,10 @@ int		ft_wcharlen(wchar_t wchar)
 	return (length);
 }
 
-// void	ft_print_all_flags(t_printf_arg *args)
-// {
-//     printf("'#': %d\n'-': %d\n'+': %d\n' ': %d\n'0': %d\n'.': %d\nLength: %d\nType: %c\nConversion1: %c\nConversion2: %c\nWidth: %d\n",args->flag_hash, args->flag_minus, args->flag_plus, args->flag_space, args->flag_zero, args->precision, args->length, args->type, args->conv_s, args->conv_d, args->width);
-// }
+void	ft_print_all_flags(t_printf_arg *args)
+{
+    printf("'#': %d\n'-': %d\n'+': %d\n' ': %d\n'0': %d\n'.': %d\nLength: %d\nType: %c\nConversion1: %c\nConversion2: %c\nWidth: %d\n",args->flag_hash, args->flag_minus, args->flag_plus, args->flag_space, args->flag_zero, args->precision, args->length, args->type, args->conv_s, args->conv_d, args->width);
+}
 
 size_t	ft_wstrlen(const wchar_t *wstr)
 {

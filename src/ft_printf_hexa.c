@@ -8,7 +8,7 @@ char *ft_convert_base_hexa(uintmax_t nb, char base)
 	char *res;
 	char *hexa;
 
-	hexa = (base == 'x' ? ft_strdup("0123456789abcdef") : ft_strdup("0123456789ABCDEF"));	
+	hexa = (base != 'l' ? ft_strdup("0123456789abcdef") : ft_strdup("0123456789ABCDEF"));	
 	tmp = nb;
 	size = ((!nb) ? 1 : 0);
 	while (tmp)
@@ -17,13 +17,13 @@ char *ft_convert_base_hexa(uintmax_t nb, char base)
 		size++;
 	}
 	res = ft_strnew(size);
+	if (!nb)
+		res[0] = '0';
 	while (nb)
 	{
 		res[--size] = hexa[nb % 16];
 		nb /= 16;
 	}
-	if (!nb)
-		res[0] = '0';
 	free(hexa);
 	return (res);
 }
