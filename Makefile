@@ -12,9 +12,6 @@
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Wextra -Werror
-INC = -Iincludes/
-
 SRC_FOLDER = src/
 LIBFT_FOLDER = libft/
 
@@ -29,10 +26,13 @@ LIBFT = $(addprefix $(LIBFT_FOLDER), $(LIBFT_FILES))
 
 OBJ = $(SRC_FILES:.c=.o) $(LIBFT_FILES:.c=.o)
 
+FLAGS = -Wall -Wextra -Werror
+INC = -Iincludes/
+
 
 $(NAME):
 	@echo "Compilation en cours..."
-	gcc -c $(FLAGS) $(SRC) $(LIBFT) $(INC)
+	@gcc -c $(FLAGS) $(SRC) $(LIBFT) $(INC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(NAME) générée avec succès"
