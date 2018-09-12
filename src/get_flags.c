@@ -62,6 +62,11 @@ int get_alpha_flags(t_printf_arg *args, const char *format, int i)
 	}
 	else if (format[i] == '%')
 		args->type = '%';
+	else if (format[i] == 'p')
+	{
+		args->type = 'p';
+		args->flag_hash = 1;
+	}
 	// i à incrémenter ici
 	// printf("Alpha Format i: %c\n", format[i]);
 	return (i + 1); 
@@ -134,6 +139,15 @@ int get_flags(t_printf_arg *args, const char *format)
 			i++;
 		// Si char incompatible, boucle infinie !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
+	// No specifier
+	// if ((args->type) && format[i] == '\n')
+	// {
+	// 	i = 0;
+	// 	while (format[i] == ' ')
+	// 		i++;
+	// 	ft_putstr(format + i);
+	// 	return (ft_strlen(format + i));
+	// }
 	// printf("Valeur de i (inside get_flag): %d, Char: %c\n", i - 1, format[i - 1]);
 	return (i);
 }

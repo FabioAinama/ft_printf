@@ -50,9 +50,9 @@ int ft_deal_hash(t_printf_arg *args, uintmax_t nb)
 	if ((args->type == 'x' || args->type == 'X') && !(nb))
 		return (0);
 	ft_putchar('0');
-	if (args->type == 'x' || args->type == 'X')
+	if (args->type == 'x' || args->type == 'X' || args->type == 'p')
 	{
-		ft_putchar(args->type);
+		(args->type == 'X') ? ft_putchar(args->type) : ft_putchar('x');
 		return (2);
 	}
 	return (1);

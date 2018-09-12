@@ -49,10 +49,10 @@ int	ft_printf_wchar(t_printf_arg *args, va_list list)
 	length = ft_wcharlen(c);
 	args->length = length;	
 	if (!(args->flag_minus))
-		length = ((args->width == 0) ? 0 : ft_deal_width(args));;
+		length += ((args->width == 0) ? 0 : ft_deal_width(args));;
 	ft_putwchar(c);
 	if (args->flag_minus)
-		length = ((args->width == 0) ? 0 : ft_deal_width(args));;
+		length += ((args->width == 0) ? 0 : ft_deal_width(args));;
 	return (length);
 }
 

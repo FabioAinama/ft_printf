@@ -50,10 +50,10 @@ char	*ft_convert_base_hexa(uintmax_t nb, char base)
 	char		*res;
 	char		*hexa;
 
-	if (base == 'x')
-		hexa = ft_strdup("0123456789abcdef");
-	else
+	if (base == 'X')
 		hexa = ft_strdup("0123456789ABCDEF");
+	else
+		hexa = ft_strdup("0123456789abcdef");
 	tmp = nb;
 	size = ((!nb) ? 1 : 0);
 	size += ft_get_un_length(nb, 16);
@@ -73,6 +73,7 @@ int		ft_printf_hexa(t_printf_arg *args, va_list list)
 {
 	int i;
 
+	// printf("Called hexa\n");
 	i = 0;
 	if (args->type == 'p')
 		i += ft_deal_nbr_str(args, (uintmax_t)va_arg(list, void *), 16);
@@ -85,9 +86,9 @@ int		ft_printf_hexa(t_printf_arg *args, va_list list)
 	else if (args->conv_s == 'l')
 		i += ft_deal_nbr_str(args, va_arg(list, unsigned long), 16);
 	else if (args->conv_s == 'h' && args->conv_d == 'h')
-		i += ft_deal_nbr_str(args, (unsigned short)va_arg(list, unsigned int), 16);
-	else if (args->conv_s == 'h')
 		i += ft_deal_nbr_str(args, (unsigned char)va_arg(list, unsigned int), 16);
+	else if (args->conv_s == 'h')
+		i += ft_deal_nbr_str(args, (unsigned short)va_arg(list, unsigned int), 16);
 	else
 		i += ft_deal_nbr_str(args, va_arg(list, unsigned int), 16);
 	return (i);

@@ -9,6 +9,7 @@ int    main()
     char *s2;
     char s3;
     char *s4;
+    int i;
     unsigned int ui = 1284;
     double dbl = 42.1325437;
     double dbl2 = 49.999999999995;
@@ -27,8 +28,10 @@ int    main()
     // printf("R: %d\n", printf("R: %2.0x\n", 0));
     // printf("R: %d\n", printf("%10s is a string\n", "this"));
     // printf("F: %d\n", ft_printf("%10s is a string\n", "this"));
-    printf("R: %d\n", printf("%jd\n", 9223372036854775807));
-    printf("F: %d\n", ft_printf("%jd\n", 9223372036854775807));
+    // printf("R: %d\n", printf("% Zoo\n"));
+    // printf("F: %d\n", ft_printf("% Zoo\n"));
+    printf("R: %d\n", printf("%05d\n", -42));
+    printf("F: %d\n", ft_printf("%05d\n", -42));
 
 
 

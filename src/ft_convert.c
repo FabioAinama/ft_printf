@@ -51,9 +51,9 @@ char *ft_convert_neg_binary(char *binary)
 
 int ft_binary_to_int(char *binary)
 {
-	unsigned int length;
+	int length;
 	int i;
-	unsigned int sum;
+	int sum;
 
 	length = 1;
 	i = 0;

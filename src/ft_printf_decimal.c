@@ -19,9 +19,9 @@ int	ft_deal_number(t_printf_arg *args, intmax_t nb)
 
 	// printf("Nb recu: %ld\n", nb);
 	i = 0;
-	args->length = ft_get_length(nb, 10);
 	args->neg = (nb < 0 ? 1 : 0);
 	nb = (nb < 0 ? -nb : nb);
+	args->length = ft_get_length(nb, 10);
 	if (args->flag_minus == 0 && !(args->type == 'd' && args->flag_zero == 1))
 		i += ((args->width == 0) ? 0 : ft_deal_width(args));
 	if (args->flag_space || args->flag_plus || args->neg)
@@ -65,8 +65,9 @@ int	ft_deal_nbr_str(t_printf_arg *args, uintmax_t nb, int base)
 	int		i;
 	char	*str_nb;
 
+	// printf("Nbr: %lu\n", nb);
 	i = 0;
-	if (args->type == 'x' || args->type == 'X')
+	if (args->type == 'x' || args->type == 'X' || args->type == 'p')
 		str_nb = ft_strdup(ft_convert_base_hexa(nb, args->type));
 	else
 		str_nb = ft_strdup(ft_convert_base_str(nb, base));
