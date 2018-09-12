@@ -17,6 +17,7 @@ LIBFT_FOLDER = libft/
 
 SRC_FILES = ft_printf.c ft_printf_decimal.c get_flags.c ft_printf_str.c ft_printf_char.c\
 	ft_convert.c ft_putlnbr.c ft_printf_float.c ft_printf_hexa.c ft_printf_octal.c ft_utils.c\
+	ft_deal_flags.c\
 
 LIBFT_FILES = ft_putchar.c ft_putstr.c ft_tolower.c ft_isdigit.c ft_atoi.c ft_isalpha.c\
 	ft_strdup.c ft_strlen.c ft_strnew.c ft_putnbr.c ft_memalloc.c ft_strcpy.c ft_bzero.c\
@@ -44,7 +45,7 @@ all : $(NAME)
 cp : 
 	gcc main.c $(SRC) -L libft/ -lft $(INC)
 run : 
-	./a.out | cat -e
+	@./a.out | cat -e
 
 clean :
 	@rm -rf $(OBJ)

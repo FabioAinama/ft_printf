@@ -31,11 +31,12 @@ int			ft_printf_udecimal(t_printf_arg *args, va_list list);
 int			ft_printf_octal(t_printf_arg *args, va_list list);
 int			ft_printf_hexa(t_printf_arg *args, va_list list);
 int			ft_printf_char(t_printf_arg *args, va_list list);
-int			ft_deal_number_str(t_printf_arg *args, uintmax_t nb, int base);
+int			ft_deal_nbr_str(t_printf_arg *args, uintmax_t nb, int base);
 void		ft_printf_float(t_printf_arg *args, double nb);
 int			ft_printf_str(t_printf_arg *args, va_list list);
 int			ft_deal_width(t_printf_arg *args);
 int			ft_get_length(intmax_t nb, int base);
+int			ft_get_un_length(uintmax_t nb, int base);
 
 char		*ft_convert_octal(long int nb);
 char		*ft_convert_base_hexa(uintmax_t nb, char base);
@@ -43,6 +44,13 @@ int			ft_putunbr(int n);
 int			ft_putlunbr(uintmax_t n);
 int			ft_get_un_length(uintmax_t nb, int base);
 char		*ft_convert_base_str(uintmax_t nb, int base);
+
+// Flags
+int	ft_deal_zero(t_printf_arg *args);
+int	ft_deal_plus_space(t_printf_arg *args);
+int	ft_deal_precision(t_printf_arg *args);
+int ft_deal_hash(t_printf_arg *args, uintmax_t nb);
+int	ft_deal_width(t_printf_arg *args);
 
 // Utils
 int			ft_isupper(char c);

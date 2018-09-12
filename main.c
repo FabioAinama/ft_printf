@@ -20,10 +20,56 @@ int    main()
     s2 = "Fabiooooo";
     s3 = 'A';
 
+
+    // printf("R: %d\n", printf("%#.x %#.0x\n", 0, 0));
+    // printf("R: %d\n", printf("R: %5.0x\n", 42));
+    // printf("R: %d\n", printf("R: %2.0x\n", 42));
+    // printf("R: %d\n", printf("R: %2.0x\n", 0));
+    // printf("R: %d\n", printf("%10s is a string\n", "this"));
+    // printf("F: %d\n", ft_printf("%10s is a string\n", "this"));
+    printf("R: %d\n", printf("%jd\n", 9223372036854775807));
+    printf("F: %d\n", ft_printf("%jd\n", 9223372036854775807));
+
+
+
+
+    // ft_printf("%%\n");
+    // printf("%%\n");
+    // ft_printf("%5%", "\n");
+    // printf("%5%", "\n");
+    // ft_printf("%-5%", "\n");
+    // printf("%-5%", "\n");
+    // ft_printf("%.0%", "\n");
+    // printf("%.0%", "\n");
+    // ft_printf("%%", "test", "\n");
+    // printf("%%", "test", "\n");
+    // ft_printf("%   %", "test", "\n");
+    // printf("%   %", "test", "\n");
+    // ft_printf("%x\n", 42);
+    // printf("%x\n", 42);
+    // ft_printf("%X\n", 42);
+    // printf("%X\n", 42);
+    // ft_printf("%x\n", 0);
+    // printf("%x\n", 0);
+    // ft_printf("%X\n", 0);
+    // printf("%X\n", 0);
+    // ft_printf("%x\n", -42);
+    // printf("%x\n", -42);
+    // ft_printf("%X\n", -42);
+    // printf("%X\n", -42);
+    // ft_printf("%x\n", 4294967296);
+    // printf("%x\n", 4294967296);
+    // ft_printf("%X\n", 4294967296);
+    // printf("%X\n", 4294967296);
+    // ft_printf("%10x\n", 42);
+    // printf("%10x\n", 42);
+    // ft_printf("%-10x\n", 42);
+    // printf("%-10x\n", 42);
+
     // printf("%x\n", 42);
     // ft_printf("%x\n", 42);
-    printf("R: %d\n", printf("%x\n", 42));
-    printf("F: %d\n", ft_printf("%x\n", 42));
+    // printf("R: %d\n", printf("%x\n", 42));
+    // printf("F: %d\n", ft_printf("%x\n", 42));
     // printf("R: %d\n", );
     // printf("F: %d\n", );
 

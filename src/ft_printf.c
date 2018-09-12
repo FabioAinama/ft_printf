@@ -1,37 +1,69 @@
 #include "ft_printf.h"
 #include "libft.h"
 
+int				ft_print_petcent(t_printf_arg *args)
+{
+	int length;
+
+	length = 1;	
+	args->length = length;
+	if (!(args->flag_minus))
+		length += ((args->width == 0) ? 0 : ft_deal_width(args));
+	ft_putchar('%');
+	if (args->flag_minus)
+		length += ((args->width == 0) ? 0 : ft_deal_width(args));	
+	// printf("Returned length: %d\n", length);	
+	return (length);
+}
+
+// int				ft_dispatcher(t_printf_arg *args, va_list list)
+// {
+// 	int i;
+
+// 	// return (0);
+// 	i = 0;
+// 	if (args->type == 'd')
+// 		i = ft_printf_decimal(args, list);
+// 	else if (args->type == 'u')
+// 		i = ft_printf_udecimal(args, list);
+// 	else if (args->type == 'x' || args->type == 'X' || args->type == 'p')
+// 		i = ft_printf_hexa(args, list);
+// 	else if (args->type == 'o')
+// 		i = ft_printf_octal(args, list);
+// 	else if (args->type == 'c')
+// 		i = ft_printf_char(args, list);
+// 	else if (args->type == 's')
+// 		i = ft_printf_str(args, list);
+// 	else if (args->type == 'f')
+// 		ft_printf_float(args ,va_arg(list, double));
+// 	else if (args->type == '%')
+// 		i = ft_print_petcent(args);
+// 	return (i);
+// }
 int				ft_dispatcher(t_printf_arg *args, va_list list)
 {
 	int i;
 
+	// return (0);
 	i = 0;
 	if (args->type == 'd')
 		i = ft_printf_decimal(args, list);
 	else if (args->type == 'u')
 		i = ft_printf_udecimal(args, list);
-	if (args->type == 'x' || args->type == 'p')
+	else if (args->type == 'x' || args->type == 'X' || args->type == 'p')
 		i = ft_printf_hexa(args, list);
 	else if (args->type == 'o')
-	{
-		return (1);
 		i = ft_printf_octal(args, list);
-	}
 	else if (args->type == 'c')
 		i = ft_printf_char(args, list);
 	else if (args->type == 's')
 		i = ft_printf_str(args, list);
 	else if (args->type == 'f')
-		ft_printf_float(args ,va_arg(list, double));
+		return (0);
 	else if (args->type == '%')
-	{
-		ft_putchar('%');
-		i++;
-	}
+		i = ft_print_petcent(args);
 	return (i);
 }
-
-// int				ft_print
 
 t_printf_arg	*new_printf_args(void)
 {
@@ -55,9 +87,9 @@ t_printf_arg	*new_printf_args(void)
 	return (args);
 }
 
+
 int				ft_printf(const char *format, ...)
 {
-	// int i;
 	int i;
 	int length;
 	va_list list;
@@ -70,17 +102,28 @@ int				ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			i++;
 			if (!(args = new_printf_args()))
 				return (-1);
 			i += get_flags(args, (format + i));
+			// printf("i: %d\n", i);						
 			length += ft_dispatcher(args, list);
+			// printf("Returned length: %d\n", length);
+			// printf("Format left: %s\n", format + i);
+			// printf("Char: %c\n", format[i]);			
+			// ft_print_all_flags(args);
+			// printf("Precision printf: %d\n", args->precision);
+			// FREE NEEDED
+			free(args);
 		}
 		else
-		{
+		{		
 			ft_putchar(format[i]);
 			length++;
 			i++;
 		}
+			// printf("Returned length: %d\n", length);
+		
 		// i += ((format[i] == '%' && format[i + 1] == '%') ? 1 : 0);
 	}
 	va_end(list);

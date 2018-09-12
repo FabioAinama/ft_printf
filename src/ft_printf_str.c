@@ -34,6 +34,7 @@ int		ft_printf_wstr(t_printf_arg *args, va_list list)
 	if (!(args->flag_minus))
 		length += ((args->width == 0) ? 0 : ft_deal_width(args));
 	ft_putwstr(str);
+	// free(str);
 	if (args->flag_minus)
 		length += ((args->width == 0) ? 0 : ft_deal_width(args));
 	return (length);
@@ -48,7 +49,7 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 	if (args->conv_s == 'l')
 		return (ft_printf_wstr(args, list));
 	if (!(str = va_arg(list, char *)))
-		str =  ft_strdup("(null)");
+		str = ft_strdup("(null)");
 	if (args->set_precision)
 	{
 		cpy = ft_strnew(args->precision);
@@ -57,6 +58,7 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 		str = cpy;
 	}
 	length = ft_strlen(str);
+	args->length = length;
 	if (!(args->flag_minus))
 		length += ((args->width == 0) ? 0 : ft_deal_width(args));
 	ft_putstr(str);
