@@ -31,6 +31,7 @@ int		ft_printf_wstr(t_printf_arg *args, va_list list)
 		str = cpy;
 	}
 	length = ft_wstrlen(str);
+	args->length = length;
 	if (!(args->flag_minus))
 		length += ((args->width == 0) ? 0 : ft_deal_width(args));
 	ft_putwstr(str);

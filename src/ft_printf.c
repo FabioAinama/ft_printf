@@ -20,7 +20,6 @@ int				ft_print_petcent(t_printf_arg *args)
 // {
 // 	int i;
 
-// 	// return (0);
 // 	i = 0;
 // 	if (args->type == 'd')
 // 		i = ft_printf_decimal(args, list);
@@ -115,7 +114,7 @@ int				ft_printf(const char *format, ...)
 			i++;
 			if (!(args = new_printf_args()))
 				return (-1);
-			i += get_flags(args, (format + i));
+			i += get_flags(args, (format + i), list);
 			// printf("i: %d\n", i);
 			// ft_print_all_flags(args);
 			length += ft_dispatcher(args, list);

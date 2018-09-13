@@ -21,6 +21,8 @@ int    main()
     s2 = "Fabiooooo";
     s3 = 'A';
 
+    // setlocale(LC_ALL, "en_US.utf8");
+
 
     // printf("R: %d\n", printf("%#.x %#.0x\n", 0, 0));
     // printf("R: %d\n", printf("R: %5.0x\n", 42));
@@ -35,8 +37,21 @@ int    main()
     // printf("R: %d\n", printf("% Zoo\n"));
     // printf("F: %d\n", ft_printf("% Zoo\n"));
     // printf("R: %d\n", printf("{%}\n"));
+    // printf("R: %d\n", printf("{%30S}", L"´"));
+    // printf("R: %d\n", ft_printf("{%30S}", L"´"));
     // printf("R: %d\n", printf("{%30S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
     // printf("F: %d\n", ft_printf("{%30S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
+    // printf("R: %d\n", printf("R:{%*c}\n", -15, 0));
+    // printf("R: %d\n", printf("R:{%-15c}\n", 0));
+    // printf("F: %d\n", ft_printf("F:{%.*s}\n", -5, "42"));
+    printf("R: %d\n", printf("{%05.*d}", -15, 42));
+    printf("R: %d\n", printf("{%05d}", 42));
+    printf("F: %d\n", ft_printf("{%05.*d}\n", -15, 42));
+    // printf("R: %d\n", printf("R:{%.5s}\n", "42"));
+    // printf("R: %d\n", printf("R:{%-.5s}\n", "42"));
+    // printf("R: %d\n", printf("R:{%.-5d}\n", 42));
+    // printf("R: %d\n", printf("R: %+4.0d\n", 0));
+    
     
 
 
@@ -95,7 +110,6 @@ int    main()
     // } else {
     //     printf("Locale set to %s\n", l);
     // }
-    // setlocale(LC_ALL, "en_US.utf8");
     // printf("Real wc: %lc\n", 945);
     // printf("Real wc: %C\n", 945);
     // printf("Real wc: @ %lc\n", '@');

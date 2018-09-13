@@ -22,11 +22,11 @@ typedef struct	s_printf_arg
 	char notype;
 	char conv_s;
 	char conv_d;
-	unsigned int width;
+	int width;
 }				t_printf_arg;
 
 int			ft_printf(const char *format, ...);
-int			get_flags(t_printf_arg *args, const char *format);
+int			get_flags(t_printf_arg *args, const char *format, va_list list);
 int			get_alpha_flags(t_printf_arg *args, const char *format, int i);
 int			get_conv_flags(t_printf_arg *args, const char *format, int i);
 int			ft_printf_decimal(t_printf_arg *args, va_list list);

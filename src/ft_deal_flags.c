@@ -7,8 +7,6 @@ int	ft_deal_zero(t_printf_arg *args)
 	int printed;
 
 	toprint = args->width - (args->flag_space || args->flag_plus || args->neg) - args->length;
-	// if (args->neg)
-	// 	toprint--;
 	printed = (toprint > 0 ? toprint : 0);
 	while (toprint > 0)
 	{
@@ -74,7 +72,6 @@ int	ft_deal_width(t_printf_arg *args)
 
 	toprint = args->width - args->precision - (args->flag_space || args->flag_plus || args->neg) - args->length;
 	// ft_print_all_flags(args);
-	// printf("Toprint: %d\n", toprint);
 	if (args->flag_hash)
 	{
 		if (args->type == 'x' || args->type == 'X' || args->type == 'p')

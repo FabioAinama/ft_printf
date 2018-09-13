@@ -18,6 +18,7 @@ int get_alpha_flags(t_printf_arg *args, const char *format, int i)
 	{
 		args->type = 'd';
 		(format[i] == 'D') ? args->conv_s = 'l' : 0;
+		(args->precision < 0) ? args->precision = 0 : 0;
 		(args->precision) ? args->flag_zero = 0 : 0;
 	}
 	else if (format[i] == 's' || format[i] == 'S')
@@ -26,6 +27,7 @@ int get_alpha_flags(t_printf_arg *args, const char *format, int i)
 		// args->flag_zero = 0;
 		args->flag_plus = 0;
 		args->flag_space = 0;
+		(args->precision < 0) ? args->precision *= -1 : 0;		
 		args->type = 's';
 	}
 	else if (format[i] == 'f' || format[i] == 'F')

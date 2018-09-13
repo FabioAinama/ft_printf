@@ -51,7 +51,24 @@ int get_plus_space_flag_hash(t_printf_arg *args, const char c)
 	return (1);
 }
 
-int get_precision_flag(t_printf_arg *args, const char *format)
+int	get_wildcard(t_printf_arg *args, int *ptr, va_list list, int width)
+{
+	int nb;
+
+	nb = va_arg(list, int);
+	if (width)
+	{
+		if (nb < 0)
+		{
+			nb = -nb;
+			args->flag_minus = 1;
+		}
+	}
+	*ptr = nb;
+	return (1);
+}
+
+int get_precision_flag(t_printf_arg *args, const char *format, va_list list)
 {
 	int i;
 
@@ -61,6 +78,8 @@ int get_precision_flag(t_printf_arg *args, const char *format)
 		args->precision = ft_atoi(format);
 		i = i + 1 + ft_get_length(args->precision, 10);
 	}
+	else if (format[i] == '*')
+		i = i + 1 + get_wildcard(args, &(args->precision), list, 0);
 	else
 	{
 		args->precision = 0;
@@ -70,7 +89,7 @@ int get_precision_flag(t_printf_arg *args, const char *format)
 	return (i);
 }
 
-int get_flags(t_printf_arg *args, const char *format)
+int get_flags(t_printf_arg *args, const char *format, va_list list)
 {
 	int i;
 
@@ -81,13 +100,15 @@ int get_flags(t_printf_arg *args, const char *format)
 			i += get_minus_zero_flag(args, format[i]);
 		else if (format[i] == '+' || format[i] == ' ' || format[i] == '#')
 			i += get_plus_space_flag_hash(args, format[i]);
-		else if (ft_isdigit(format[i]) && !(args->width))
+		else if (ft_isdigit(format[i]))
 		{
 			args->width = ft_atoi(format + i);
 			i += ft_get_length(args->width, 10);
 		}
+		else if (format[i] == '*')
+			i += get_wildcard(args, &(args->width), list, 1);
 		else if (format[i] == '.' && !(args->set_precision))
-			i += get_precision_flag(args, format + (i + 1));
+			i += get_precision_flag(args, format + (i + 1), list);
 		else if (ft_isalpha(format[i]) || format[i] == '%')
 			i = get_alpha_flags(args, format, i);
 		else

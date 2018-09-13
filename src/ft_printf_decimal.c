@@ -17,7 +17,7 @@ int	ft_should_i_print_dec(t_printf_arg *args, intmax_t nb)
 {
 	int i;
 
-	if ((args->precision == 0 && args->set_precision && !nb) && !(args->type == 'o' && args->flag_hash))
+	if (args->precision == 0 && args->set_precision && !nb)
 		return (0);
 	else
 	{
@@ -43,6 +43,8 @@ int	ft_deal_number(t_printf_arg *args, intmax_t nb)
 	args->neg = (nb < 0 ? 1 : 0);
 	nb = (nb < 0 ? -nb : nb);
 	args->length = ft_get_length(nb, 10);
+	if (args->precision == 0 && args->set_precision && !nb)
+		args->length = 0;
 	if (args->flag_minus == 0 && !(args->type == 'd' && args->flag_zero == 1))
 		i += ((args->width == 0) ? 0 : ft_deal_width(args));
 	if (args->flag_space || args->flag_plus || args->neg)
