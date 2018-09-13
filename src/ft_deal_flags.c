@@ -6,7 +6,9 @@ int	ft_deal_zero(t_printf_arg *args)
 	int toprint;
 	int printed;
 
-	toprint = args->width - (args->flag_space || args->flag_plus) - args->length;
+	toprint = args->width - (args->flag_space || args->flag_plus || args->neg) - args->length;
+	// if (args->neg)
+	// 	toprint--;
 	printed = (toprint > 0 ? toprint : 0);
 	while (toprint > 0)
 	{
@@ -34,8 +36,12 @@ int	ft_deal_precision(t_printf_arg *args)
 {
 	int toprint;
 	int printed;
+	char c;
 
+	c = args->type;
 	toprint = args->precision - args->length;
+	if ((c == 'o') && args->flag_hash)
+		toprint--;
 	printed = (toprint > 0 ? toprint : 0);
 	while (toprint > 0)
 	{
@@ -47,12 +53,15 @@ int	ft_deal_precision(t_printf_arg *args)
 
 int ft_deal_hash(t_printf_arg *args, uintmax_t nb)
 {
-	if ((args->type == 'x' || args->type == 'X') && !(nb))
+	char c;
+
+	c = args->type;
+	if ((c == 'x' || c == 'X' || c == 'o') && !(nb))
 		return (0);
 	ft_putchar('0');
-	if (args->type == 'x' || args->type == 'X' || args->type == 'p')
+	if (c == 'x' || c == 'X' || c == 'p')
 	{
-		(args->type == 'X') ? ft_putchar(args->type) : ft_putchar('x');
+		(c == 'X') ? ft_putchar(c) : ft_putchar('x');
 		return (2);
 	}
 	return (1);
@@ -64,9 +73,11 @@ int	ft_deal_width(t_printf_arg *args)
 	int	printed;
 
 	toprint = args->width - args->precision - (args->flag_space || args->flag_plus || args->neg) - args->length;
+	// ft_print_all_flags(args);
+	// printf("Toprint: %d\n", toprint);
 	if (args->flag_hash)
 	{
-		if (args->type == 'x' || args->type == 'X')
+		if (args->type == 'x' || args->type == 'X' || args->type == 'p')
 			toprint -= 2;
 		else if (args->type == 'o' || args->type == 'O')
 			toprint--;

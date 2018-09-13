@@ -44,7 +44,6 @@ int				ft_dispatcher(t_printf_arg *args, va_list list)
 {
 	int i;
 
-	// return (0);
 	i = 0;
 	if (args->type == 'd')
 		i = ft_printf_decimal(args, list);
@@ -62,6 +61,16 @@ int				ft_dispatcher(t_printf_arg *args, va_list list)
 		return (0);
 	else if (args->type == '%')
 		i = ft_print_petcent(args);
+	else if (args->type == 'Z')
+	{
+		args->length = 1;
+		if (args->flag_minus == 0)
+			i += ((args->width == 0) ? 0 : (ft_deal_width(args)));
+		ft_putchar(args->notype);
+		if (args->flag_minus)
+			i += ((args->width == 0) ? 0 : (ft_deal_width(args)));
+		i += args->length;
+	}
 	return (i);
 }
 
@@ -80,6 +89,7 @@ t_printf_arg	*new_printf_args(void)
 	args->set_precision = 0;
 	args->neg = 0;
 	args->length = 0;
+	args->type = 0;
 	args->type = 0;
 	args->conv_s = 0;
 	args->conv_d = 0;
@@ -106,14 +116,13 @@ int				ft_printf(const char *format, ...)
 			if (!(args = new_printf_args()))
 				return (-1);
 			i += get_flags(args, (format + i));
-			// printf("i: %d\n", i);						
+			// printf("i: %d\n", i);
+			// ft_print_all_flags(args);
 			length += ft_dispatcher(args, list);
 			// printf("Returned length: %d\n", length);
 			// printf("Format left: %s\n", format + i);
-			// printf("Char: %c\n", format[i]);			
+			// printf("Char: %c\n", format[i]);
 			// ft_print_all_flags(args);
-			// printf("Precision printf: %d\n", args->precision);
-			// FREE NEEDED
 			free(args);
 		}
 		else

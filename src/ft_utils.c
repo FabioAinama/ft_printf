@@ -44,7 +44,7 @@ int		ft_wcharlen(wchar_t wchar)
 
 void	ft_print_all_flags(t_printf_arg *args)
 {
-    printf("'#': %d\n'-': %d\n'+': %d\n' ': %d\n'0': %d\n'.': %d\nSetPrecision: %d\nLength: %d\nType: %c\nConversion1: %c\nConversion2: %c\nWidth: %d\n",args->flag_hash, args->flag_minus, args->flag_plus, args->flag_space, args->flag_zero, args->precision, args->set_precision, args->length, args->type, args->conv_s, args->conv_d, args->width);
+    printf("'#': %d\n'-': %d\n'+': %d\n' ': %d\n'0': %d\n'.': %d\nSetPrecision: %d\nLength: %d\nIsNeg: %d\nType: %c\nConversion1: %c\nConversion2: %c\nWidth: %d\n",args->flag_hash, args->flag_minus, args->flag_plus, args->flag_space, args->flag_zero, args->precision, args->set_precision, args->length, args->neg, args->type, args->conv_s, args->conv_d, args->width);
 }
 
 size_t	ft_wstrlen(const wchar_t *wstr)

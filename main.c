@@ -30,8 +30,14 @@ int    main()
     // printf("F: %d\n", ft_printf("%10s is a string\n", "this"));
     // printf("R: %d\n", printf("% Zoo\n"));
     // printf("F: %d\n", ft_printf("% Zoo\n"));
-    printf("R: %d\n", printf("%05d\n", -42));
-    printf("F: %d\n", ft_printf("%05d\n", -42));
+    // printf("R: %d\n", printf("%05d\n", -42));
+    // printf("F: %d\n", ft_printf("%05d\n", -42));
+    // printf("R: %d\n", printf("% Zoo\n"));
+    // printf("F: %d\n", ft_printf("% Zoo\n"));
+    // printf("R: %d\n", printf("{%}\n"));
+    // printf("R: %d\n", printf("{%30S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
+    // printf("F: %d\n", ft_printf("{%30S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
+    
 
 
 
