@@ -103,7 +103,11 @@ int				ft_printf(const char *format, ...)
 				return (-1);
 			i += get_flags(args, (format + i), list);
 			if ((ret = ft_dispatcher(args, list, ret)) == -1)
+			{
+			// free(args);
+
 				return (-1);
+			}
 			free(args);
 		}
 		else

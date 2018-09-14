@@ -82,6 +82,7 @@ uintmax_t ft_binary_to_int(char *binary)
 		sum += ((binary[length] - 48) * i);
 		i *= 2;
 	}
+	// free(binary);
 	return (sum);
 }
 

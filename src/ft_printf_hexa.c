@@ -73,7 +73,6 @@ int		ft_printf_hexa(t_printf_arg *args, va_list list)
 {
 	int i;
 
-	// printf("Called hexa\n");
 	i = 0;
 	if (args->type == 'p')
 		i += ft_deal_nbr_str(args, (uintmax_t)va_arg(list, void *), 16);

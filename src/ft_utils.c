@@ -30,6 +30,7 @@ char	*ft_strrev(char *str)
 		str[(length) - i] = tmp;
 		i++;
 	}
+	// free(tmp);
 	return (str);
 }
 

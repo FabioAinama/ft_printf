@@ -85,11 +85,10 @@ int	ft_deal_nbr_str(t_printf_arg *args, uintmax_t nb, int base)
 
 	i = 0;
 	if (args->type == 'x' || args->type == 'X' || args->type == 'p')
-		str_nb = ft_strdup(ft_convert_base_hexa(nb, args->type));
+		str_nb = ft_convert_base_hexa(nb, args->type);
 	else
-		str_nb = ft_strdup(ft_convert_base_str(nb, base));
+		str_nb = ft_convert_base_str(nb, base);
 	args->length = ft_strlen(str_nb);
-	// ft_print_all_flags(args);
 	if (args->fl_hash && args->fl_zero)
 		i += ft_deal_hash(args, nb);
 	if (args->fl_minus == 0)

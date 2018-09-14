@@ -19,11 +19,12 @@ int		ft_printf_wstr(t_printf_arg *args, va_list list)
 {
 	int		length;
 	wchar_t	*str;
+	wchar_t	*val;
 	wchar_t	*cpy;
 
-	if (!(str = va_arg(list, wchar_t *)))
-		str = ft_wstrdup(L"(null)");
-	if (args->set_precision)
+	val = va_arg(list, wchar_t *);
+	str = (val ? ft_wstrdup(val) : ft_wstrdup(L"(null)"));
+	if (args->set_precision == 1)
 	{
 		cpy = ft_wstrnew(args->precision);
 		if (str)
@@ -35,6 +36,7 @@ int		ft_printf_wstr(t_printf_arg *args, va_list list)
 	if (!(args->fl_minus))
 		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	ft_putwstr(str);
+	free(str);
 	if (args->fl_minus)
 		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	return (length);
@@ -44,17 +46,18 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 {
 	int		length;
 	char	*str;
+	char	*val;
 	char	*cpy;
 
 	if (args->conv_s == 'l')
 		return (ft_printf_wstr(args, list));
-	if (!(str = va_arg(list, char *)))
-		str = ft_strdup("(null)");
-	if (args->set_precision)
+	val = va_arg(list, char *);
+	str = (val ? ft_strdup(val) : ft_strdup("(null)"));
+	if (args->set_precision == 1)
 	{
-		cpy = ft_strnew(args->precision);
-		if (str)
-			cpy = ft_strncpy(cpy, str, args->precision);
+		if (!(cpy = (char *)malloc(sizeof(char) * args->precision)))
+			return (0);
+		cpy = ft_strncpy(cpy, str, args->precision);
 		str = cpy;
 	}
 	length = ft_strlen(str);
@@ -62,6 +65,7 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 	if (!(args->fl_minus))
 		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	ft_putstr(str);
+	free(str);
 	if (args->fl_minus)
 		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	return (length);

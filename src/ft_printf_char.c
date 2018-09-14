@@ -37,6 +37,7 @@ int	ft_putwchar(wchar_t wchar)
     converted = ft_strnew(4);
 	length = ft_convert_wchar(wchar, converted);
 	write(1, converted, length);
+	free(converted);
 	return (length);
 }
 
