@@ -46,13 +46,14 @@ int	ft_printf_wchar(t_printf_arg *args, va_list list)
 	wchar_t	c;
 
 	c = va_arg(list, wint_t);
-	length = ft_wcharlen(c);
-	args->length = length;	
-	if (!(args->flag_minus))
-		length += ((args->width == 0) ? 0 : ft_deal_width(args));;
+	if ((length = ft_wcharlen(c)) == -1)
+		return (-1);
+	args->length = length;
+	if (!(args->fl_minus))
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
 	ft_putwchar(c);
-	if (args->flag_minus)
-		length += ((args->width == 0) ? 0 : ft_deal_width(args));;
+	if (args->fl_minus)
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
 	return (length);
 }
 
@@ -64,10 +65,10 @@ int	ft_printf_char(t_printf_arg *args, va_list list)
 		return (ft_printf_wchar(args, list));
 	length = sizeof(char);
 	args->length = length;
-	if (!(args->flag_minus))
-		length += ((args->width == 0) ? 0 : ft_deal_width(args));;
+	if (!(args->fl_minus))
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
 	ft_putchar(va_arg(list, int));
-	if (args->flag_minus)
-		length += ((args->width == 0) ? 0 : ft_deal_width(args));;
+	if (args->fl_minus)
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
 	return (length);
 }

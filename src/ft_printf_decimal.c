@@ -45,17 +45,17 @@ int	ft_deal_number(t_printf_arg *args, intmax_t nb)
 	args->length = ft_get_length(nb, 10);
 	if (args->precision == 0 && args->set_precision && !nb)
 		args->length = 0;
-	if (args->flag_minus == 0 && !(args->type == 'd' && args->flag_zero == 1))
-		i += ((args->width == 0) ? 0 : ft_deal_width(args));
-	if (args->flag_space || args->flag_plus || args->neg)
+	if ((args->fl_minus == 0 )&& (args->fl_zero == 0))
+		i += ((args->width <= 0) ? 0 : ft_deal_width(args));
+	if (args->fl_space || args->fl_plus || args->neg)
 		i += ft_deal_plus_space(args);
-	if (args->flag_zero)
+	if (args->fl_zero)
 		i += ft_deal_zero(args);
 	if (args->precision)
 		i += ft_deal_precision(args);
 	i += ft_should_i_print_dec(args, nb);
-	if (args->flag_minus)
-		i += ((args->width == 0) ? 0 : ft_deal_width(args));
+	if (args->fl_minus)
+		i += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	return (i);
 }
 
@@ -65,8 +65,7 @@ int	ft_should_i_print(char *str, t_printf_arg *args, uintmax_t nb)
 	char c;
 
 	c = args->type;
-	// printf("Prec: %d, Set: %d, nb: %ju - Type: %c, #: %d\n", args->precision, args->set_precision, nb, c, args->flag_hash);
-	if ((args->precision == 0 && args->set_precision && !nb) && !(c == 'o' && args->flag_hash))
+	if ((args->precision == 0 && args->set_precision && !nb) && !(c == 'o' && args->fl_hash))
 	{
 		if (args->width)
 		{
@@ -91,19 +90,18 @@ int	ft_deal_nbr_str(t_printf_arg *args, uintmax_t nb, int base)
 		str_nb = ft_strdup(ft_convert_base_str(nb, base));
 	args->length = ft_strlen(str_nb);
 	// ft_print_all_flags(args);
-	// printf("Hexa: %s\n", str_nb);
-	if (args->flag_hash && args->flag_zero)
+	if (args->fl_hash && args->fl_zero)
 		i += ft_deal_hash(args, nb);
-	if (args->flag_minus == 0)
-		i += ((args->width == 0) ? 0 : ft_deal_width(args));
-	if (args->flag_hash && !(args->flag_zero))
+	if (args->fl_minus == 0)
+		i += ((args->width <= 0) ? 0 : ft_deal_width(args));
+	if (args->fl_hash && !(args->fl_zero))
 		i += ft_deal_hash(args, nb);
 	if (args->precision)
 		i += ft_deal_precision(args);
 	i += ft_should_i_print(str_nb, args, nb);
 	free(str_nb);
-	if (args->flag_minus)
-		i += ((args->width == 0) ? 0 : ft_deal_width(args));
+	if (args->fl_minus)
+		i += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	return (i);
 }
 

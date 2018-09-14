@@ -1,53 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_flags.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fginja-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/14 04:57:26 by fginja-d          #+#    #+#             */
+/*   Updated: 2018/09/14 04:57:27 by fginja-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft.h"
 
-int	get_conv_flags(t_printf_arg *args, const char *format, int i)
-{
-	char c;
-
-	c = format[i];
-	while (c == 'l' || c == 'h' || c == 'j' || c == 'z')
-	{
-		if (format[i] == 'l')
-		{
-			(!args->conv_d && args->conv_s == 'l') ? args->conv_d = 'l' : 0;
-			(!args->conv_s) ? args->conv_s = 'l' : 0;
-		}
-		else if (format[i] == 'h')
-		{
-			(!args->conv_d && args->conv_s == 'h') ? args->conv_d = 'h' : 0;
-			(!args->conv_s) ? args->conv_s = 'h' : 0;	
-		}
-		else if (format[i] == 'j' || format[i] == 'z')
-			args->conv_s = format[i];
-		c = format[++i];
-	}
-	return (i);
-}
-
-int get_minus_zero_flag(t_printf_arg *args, const char c)
+int	get_minus_zero_flag(t_printf_arg *args, const char c)
 {
 	if (c == '-')
 	{
-		args->flag_minus = 1;
-		args->flag_zero = 0;
+		args->fl_minus = 1;
+		args->fl_zero = 0;
 	}
-	if (c == '0' && !(args->flag_minus))
-		args->flag_zero = 1;
+	if (c == '0' && !(args->fl_minus))
+		args->fl_zero = 1;
 	return (1);
 }
 
-int get_plus_space_flag_hash(t_printf_arg *args, const char c)
+int	get_plus_space_flag_hash(t_printf_arg *args, const char c)
 {
 	if (c == '#')
-		args->flag_hash = 1;
+		args->fl_hash = 1;
 	if (c == '+')
 	{
-		args->flag_plus = 1;
-		args->flag_space = 0;
+		args->fl_plus = 1;
+		args->fl_space = 0;
 	}
-	if (c == ' ' && !(args->flag_plus))
-		args->flag_space = 1;
+	if (c == ' ' && !(args->fl_plus))
+		args->fl_space = 1;
 	return (1);
 }
 
@@ -61,14 +49,14 @@ int	get_wildcard(t_printf_arg *args, int *ptr, va_list list, int width)
 		if (nb < 0)
 		{
 			nb = -nb;
-			args->flag_minus = 1;
+			args->fl_minus = 1;
 		}
 	}
 	*ptr = nb;
 	return (1);
 }
 
-int get_precision_flag(t_printf_arg *args, const char *format, va_list list)
+int	get_precision_flag(t_printf_arg *args, const char *format, va_list list)
 {
 	int i;
 
@@ -89,30 +77,32 @@ int get_precision_flag(t_printf_arg *args, const char *format, va_list list)
 	return (i);
 }
 
-int get_flags(t_printf_arg *args, const char *format, va_list list)
+int	get_flags(t_printf_arg *args, const char *format, va_list list)
 {
 	int i;
+	int notype;
 
 	i = 0;
+	notype = 0;
 	while (!(args->type) && format[i])
 	{
 		if (format[i] == '-' || format[i] == '0')
 			i += get_minus_zero_flag(args, format[i]);
 		else if (format[i] == '+' || format[i] == ' ' || format[i] == '#')
 			i += get_plus_space_flag_hash(args, format[i]);
-		else if (ft_isdigit(format[i]))
+		else if (ft_isdigit(format[i]) && (ft_atoi(format + i) > 0))
 		{
 			args->width = ft_atoi(format + i);
 			i += ft_get_length(args->width, 10);
 		}
 		else if (format[i] == '*')
 			i += get_wildcard(args, &(args->width), list, 1);
-		else if (format[i] == '.' && !(args->set_precision))
+		else if (format[i] == '.')
 			i += get_precision_flag(args, format + (i + 1), list);
 		else if (ft_isalpha(format[i]) || format[i] == '%')
 			i = get_alpha_flags(args, format, i);
 		else
-			i++;
+			return (i);
 	}
 	return (i);
 }

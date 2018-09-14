@@ -54,8 +54,8 @@ void ft_printf_float(t_printf_arg *args, double nb)
 		}
 	}
 	args->length = ft_get_length(units, 10) + (args->precision ? 1 : 0);
-	if (args->flag_minus == 0)
-		args->width == 0 ? 0 : ft_deal_width(args);
+	if (args->fl_minus == 0)
+		args->width <= 0 ? 0 : ft_deal_width(args);
 	ft_putnbr(units);
 	if (args->precision != 0)
 		ft_putchar('.');
@@ -64,6 +64,6 @@ void ft_printf_float(t_printf_arg *args, double nb)
 		ft_putchar('0');
 	if (float_sum)
 		ft_putnbr(float_sum);
-	if (args->flag_minus)
-		args->width == 0 ? 0 : ft_deal_width(args);
+	if (args->fl_minus)
+		args->width <= 0 ? 0 : ft_deal_width(args);
 }

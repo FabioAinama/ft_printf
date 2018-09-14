@@ -22,7 +22,7 @@ char *ft_convert_base_str(uintmax_t nb, int base)
 	}
 	converted[length] = '\0';
 	converted = ft_strrev(converted);
-	return (converted);	
+	return (converted);
 }
 
 char *ft_convert_neg_binary(char *binary)
@@ -49,22 +49,48 @@ char *ft_convert_neg_binary(char *binary)
 	return (binary);
 }
 
-int ft_binary_to_int(char *binary)
+// int ft_binary_to_int(char *binary)
+// {
+// 	int length;
+// 	int i;
+// 	int sum;
+
+// 	length = 1;
+// 	i = 0;
+// 	sum = 0;
+// 	while (binary[i])
+// 	{
+// 		sum += ((binary[i] - 48) * length);
+// 		i++;
+// 		length *= 2;
+// 	}
+// 	return (sum);
+// }
+
+uintmax_t ft_binary_to_int(char *binary)
 {
 	int length;
 	int i;
-	int sum;
+	uintmax_t sum;
 
-	length = 1;
-	i = 0;
+	if ((length = ft_strlen(binary)) == 0)
+		return (0);
+	i = 1;
 	sum = 0;
-	while (binary[i])
+	while (binary[--length])
 	{
-		sum += ((binary[i] - 48) * length);
-		i++;
-		length *= 2;
+		sum += ((binary[length] - 48) * i);
+		i *= 2;
 	}
 	return (sum);
+}
+
+int ft_printf_conv_binary(t_printf_arg *args, char *binary)
+{
+	uintmax_t nb;
+
+	nb = ft_binary_to_int(binary);
+	return (ft_deal_number(args, nb));
 }
 
 // char *ft_convert_binary(t_printf_arg *args, int nb)

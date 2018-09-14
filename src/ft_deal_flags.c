@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_deal_flags.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fginja-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/14 05:11:48 by fginja-d          #+#    #+#             */
+/*   Updated: 2018/09/14 05:11:49 by fginja-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft.h"
 
@@ -6,7 +18,8 @@ int	ft_deal_zero(t_printf_arg *args)
 	int toprint;
 	int printed;
 
-	toprint = args->width - (args->flag_space || args->flag_plus || args->neg) - args->length;
+	toprint = args->width - (args->fl_space || args->fl_plus || args->neg) \
+		- args->length;
 	printed = (toprint > 0 ? toprint : 0);
 	while (toprint > 0)
 	{
@@ -20,25 +33,25 @@ int	ft_deal_plus_space(t_printf_arg *args)
 {
 	if (!args->neg)
 	{
-		if (args->flag_plus)
+		if (args->fl_plus)
 			ft_putchar('+');
-		else if (args->flag_space)
-			ft_putchar(' ');			
+		else if (args->fl_space)
+			ft_putchar(' ');
 	}
 	else
 		ft_putchar('-');
-	return (1);		
+	return (1);
 }
 
 int	ft_deal_precision(t_printf_arg *args)
 {
-	int toprint;
-	int printed;
-	char c;
+	int		toprint;
+	int		printed;
+	char	c;
 
 	c = args->type;
 	toprint = args->precision - args->length;
-	if ((c == 'o') && args->flag_hash)
+	if ((c == 'o') && args->fl_hash)
 		toprint--;
 	printed = (toprint > 0 ? toprint : 0);
 	while (toprint > 0)
@@ -49,7 +62,7 @@ int	ft_deal_precision(t_printf_arg *args)
 	return (printed);
 }
 
-int ft_deal_hash(t_printf_arg *args, uintmax_t nb)
+int	ft_deal_hash(t_printf_arg *args, uintmax_t nb)
 {
 	char c;
 
@@ -65,32 +78,28 @@ int ft_deal_hash(t_printf_arg *args, uintmax_t nb)
 	return (1);
 }
 
-int	ft_deal_width(t_printf_arg *args)
+int	ft_deal_width(t_printf_arg *as)
 {
 	int	toprint;
 	int	printed;
 
-	toprint = args->width - args->precision - (args->flag_space || args->flag_plus || args->neg) - args->length;
-	// ft_print_all_flags(args);
-	if (args->flag_hash)
+	toprint = as->width - as->precision - \
+		(as->fl_space || as->fl_plus || as->neg) - as->length;
+	if (as->fl_hash)
 	{
-		if (args->type == 'x' || args->type == 'X' || args->type == 'p')
+		if (as->type == 'x' || as->type == 'X' || as->type == 'p')
 			toprint -= 2;
-		else if (args->type == 'o' || args->type == 'O')
+		else if (as->type == 'o' || as->type == 'O')
 			toprint--;
 	}
-	if ((args->type != 's' && args->type != 'f') && args->precision)
-		toprint += ((args->precision > args->length) ? args->length : args->precision);
-	else if (args->type == 's' && args->precision)
-		toprint += ((args->precision > args->length) ? args->precision : args->length);
+	if ((as->type != 's' && as->type != 'f') && as->precision)
+		toprint += ((as->precision > as->length) ? as->length : as->precision);
+	else if (as->type == 's' && as->precision)
+		toprint += ((as->precision > as->length) ? as->precision : as->length);
 	printed = (toprint > 0 ? toprint : 0);
-	// printf("Toprint: %d\n", toprint);
 	while (toprint > 0)
 	{
-		if (args->flag_zero)
-			ft_putchar('0');
-		else
-			ft_putchar(' ');
+		(as->fl_zero) ? ft_putchar('0') : ft_putchar(' ');
 		toprint--;
 	}
 	return (printed);
