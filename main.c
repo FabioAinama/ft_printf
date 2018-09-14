@@ -83,9 +83,11 @@ int main(void)
 //   ft_printf("%o\n", 40);
 //   ft_printf("%%#08x\n", 42);
 //   ft_printf("%x\n", 1000);
-//   ft_printf("%#X\n", 1000);
-    printf("R: %d\n", printf("%4.11s\n", "42 is the answer"));
-    printf("F: %d\n", ft_printf("%4.11s\n", "42 is the answer"));
+//   ft_printf("%#X\n", 1000);%-*.3s LYDI
+    // printf("R: %d\n", printf("%4.11s\n", "42 is the answer"));
+    // printf("F: %d\n", ft_printf("%4.11s\n", "42 is the answer"));
+    printf("R: %d\n", printf("%-*.3s\n", 5, "42is the answer"));
+    printf("F: %d\n", ft_printf("%-*.3s\n", 5, "42is the answer"));
 //   ft_printf("%S\n", L"ݗݜशব");
 //   ft_printf("%s%s\n", "test", "test");
 //   ft_printf("%s%s%s\n", "test", "test", "test");

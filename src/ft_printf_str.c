@@ -55,9 +55,11 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 	str = (val ? ft_strdup(val) : ft_strdup("(null)"));
 	if (args->set_precision == 1)
 	{
-		if (!(cpy = (char *)malloc(sizeof(char) * args->precision)))
-			return (0);
-		cpy = ft_strncpy(cpy, str, args->precision);
+		// if (!(cpy = (char *)malloc(sizeof(char) * args->precision)))
+		// 	return (0);
+		cpy = ft_strnew(args->precision);
+		if (str)		
+			cpy = ft_strncpy(cpy, str, args->precision);
 		str = cpy;
 	}
 	length = ft_strlen(str);
