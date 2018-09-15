@@ -82,5 +82,19 @@ void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstnew(void const *content, size_t content_size);
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+int				ft_putwstr(wchar_t *wstr);
+int				ft_wcharlen(wchar_t wchar);
+int				ft_putwchar(wchar_t wchar);
+wchar_t			*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len);
+wchar_t			*ft_wstrnew(size_t size);
+wchar_t			*ft_wstrdup(wchar_t *src);
+wchar_t			*ft_wstrcpy(wchar_t *dst, const wchar_t *src);
+size_t			ft_wstrlen(const wchar_t *wstr);
+int				ft_islower(char c);
+int				ft_isupper(char c);
+char			*ft_strrev(char *str);
+
+
+
 
 #endif

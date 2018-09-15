@@ -80,10 +80,8 @@ int	get_precision_flag(t_printf_arg *args, const char *format, va_list list)
 int	get_flags(t_printf_arg *args, const char *format, va_list list)
 {
 	int i;
-	int notype;
 
 	i = 0;
-	notype = 0;
 	while (!(args->type) && format[i])
 	{
 		if (format[i] == '-' || format[i] == '0')

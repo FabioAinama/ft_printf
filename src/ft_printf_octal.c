@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_octal.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fginja-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/15 15:36:18 by fginja-d          #+#    #+#             */
+/*   Updated: 2018/09/15 15:36:19 by fginja-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft.h"
 
@@ -16,7 +28,8 @@ int	ft_printf_octal(t_printf_arg *args, va_list list)
 	else if (args->conv_s == 'h' && args->conv_d == 'h')
 		i = ft_deal_nbr_str(args, (unsigned char)va_arg(list, unsigned int), 8);
 	else if (args->conv_s == 'h')
-		i = ft_deal_nbr_str(args, (unsigned short)va_arg(list, unsigned int), 8);
+		i = ft_deal_nbr_str(args, \
+		(unsigned short)va_arg(list, unsigned int), 8);
 	else
 		i = ft_deal_nbr_str(args, va_arg(list, unsigned int), 8);
 	return (i);

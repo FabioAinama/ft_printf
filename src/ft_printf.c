@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fginja-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/15 16:59:53 by fginja-d          #+#    #+#             */
+/*   Updated: 2018/09/15 16:59:55 by fginja-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft.h"
 
@@ -5,7 +17,7 @@ int				ft_print_petcent(t_printf_arg *args)
 {
 	int length;
 
-	length = 1;	
+	length = 1;
 	args->length = length;
 	if (!(args->fl_minus))
 		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
@@ -15,10 +27,6 @@ int				ft_print_petcent(t_printf_arg *args)
 	return (length);
 }
 
-// int				ft_dispatcher(t_printf_arg *args, va_list list)
-// {
-// 		ft_printf_float(args ,va_arg(list, double));
-// }
 int				ft_dispatcher(t_printf_arg *args, va_list list, int ret)
 {
 	int i;
@@ -41,7 +49,7 @@ int				ft_dispatcher(t_printf_arg *args, va_list list, int ret)
 	else if (args->type == 's')
 		i = ft_printf_str(args, list);
 	else if (args->type == 'f')
-		return (0);
+		i = ft_printf_float(args, va_arg(list, double));
 	else if (args->type == '%')
 		i = ft_print_petcent(args);
 	else if (args->type == 'Z')
@@ -83,40 +91,41 @@ t_printf_arg	*new_printf_args(void)
 	return (args);
 }
 
-
 int				ft_printf(const char *format, ...)
 {
-	int i;
-	int ret;
-	va_list list;
-	t_printf_arg *args;
-
+	int				i;
+	int				ret;
+	va_list			list;
+	t_printf_arg	*args;
+	// t_buff *buff;
 	i = 0;
 	ret = 0;
 	va_start(list, format);
+	// if (!(buff = create_buff()))
+		// return (-1);
 	while (format[i] != '\0')
 	{
+		// printf("Je passe Boucle\n");	
 		if (format[i] == '%')
 		{
 			i++;
 			if (!(args = new_printf_args()))
 				return (-1);
+			// ft_print_buffer(buff);
 			i += get_flags(args, (format + i), list);
 			if ((ret = ft_dispatcher(args, list, ret)) == -1)
-			{
-			// free(args);
-
 				return (-1);
-			}
 			free(args);
 		}
 		else
 		{		
 			ft_putchar(format[i]);
+			// ft_put_buffer(buff, format[i]);
 			ret++;
 			i++;
 		}
 	}
+	// ft_print_buffer(buff);
 	va_end(list);
 	return (ret);
 }

@@ -85,9 +85,11 @@ int		ft_printf_hexa(t_printf_arg *args, va_list list)
 	else if (args->conv_s == 'l')
 		i += ft_deal_nbr_str(args, va_arg(list, unsigned long), 16);
 	else if (args->conv_s == 'h' && args->conv_d == 'h')
-		i += ft_deal_nbr_str(args, (unsigned char)va_arg(list, unsigned int), 16);
+		i += ft_deal_nbr_str(args, \
+		(unsigned char)va_arg(list, unsigned int), 16);
 	else if (args->conv_s == 'h')
-		i += ft_deal_nbr_str(args, (unsigned short)va_arg(list, unsigned int), 16);
+		i += ft_deal_nbr_str(args, \
+		(unsigned short)va_arg(list, unsigned int), 16);
 	else
 		i += ft_deal_nbr_str(args, va_arg(list, unsigned int), 16);
 	return (i);

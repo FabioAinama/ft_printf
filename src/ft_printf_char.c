@@ -1,45 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_char.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fginja-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/15 15:33:51 by fginja-d          #+#    #+#             */
+/*   Updated: 2018/09/15 15:33:52 by fginja-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft.h"
-
-int	ft_convert_wchar(wchar_t wchar, char *converted)
-{
-	int	length;
-
-	length = 0;
-	if (wchar <= 0xFF)
-		converted[length++] = wchar;
-	else if (wchar < 0x0800)
-	{
-		converted[length++] = ((wchar >> 6) & 0x1F) | 0xC0;
-		converted[length++] = ((wchar >> 0) & 0x3F) | 0x80;
-	}
-	else if (wchar < 0x010000)
-	{
-		converted[length++] = ((wchar >> 12) & 0x0F) | 0xE0;
-		converted[length++] = ((wchar >> 6) & 0x3F) | 0x80;
-		converted[length++] = ((wchar >> 0) & 0x3F) | 0x80;
-	}
-	else if (wchar < 0x110000)
-	{
-		converted[length++] = ((wchar >> 18) & 0x07) | 0xF0;
-		converted[length++] = ((wchar >> 12) & 0x3F) | 0x80;
-		converted[length++] = ((wchar >> 6) & 0x3F) | 0x80;
-		converted[length++] = ((wchar >> 0) & 0x3F) | 0x80;
-	}
-	return (length);
-}
-
-int	ft_putwchar(wchar_t wchar)
-{
-    char	*converted;
-    int		length;
-
-    converted = ft_strnew(4);
-	length = ft_convert_wchar(wchar, converted);
-	write(1, converted, length);
-	free(converted);
-	return (length);
-}
 
 int	ft_printf_wchar(t_printf_arg *args, va_list list)
 {
@@ -51,10 +23,10 @@ int	ft_printf_wchar(t_printf_arg *args, va_list list)
 		return (-1);
 	args->length = length;
 	if (!(args->fl_minus))
-		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	ft_putwchar(c);
 	if (args->fl_minus)
-		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	return (length);
 }
 
@@ -67,9 +39,9 @@ int	ft_printf_char(t_printf_arg *args, va_list list)
 	length = sizeof(char);
 	args->length = length;
 	if (!(args->fl_minus))
-		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	ft_putchar(va_arg(list, int));
 	if (args->fl_minus)
-		length += ((args->width <= 0) ? 0 : ft_deal_width(args));;
+		length += ((args->width <= 0) ? 0 : ft_deal_width(args));
 	return (length);
 }

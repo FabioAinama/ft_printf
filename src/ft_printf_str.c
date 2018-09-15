@@ -1,21 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fginja-d <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/15 15:37:05 by fginja-d          #+#    #+#             */
+/*   Updated: 2018/09/15 15:37:06 by fginja-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft.h"
 
-int		ft_putwstr(wchar_t *wstr)
-{
-	size_t	length;
-
-	length = 0;
-	while (*wstr)
-	{
-		ft_putwchar(*wstr);
-		length += ft_wcharlen(*wstr);
-		wstr += 1;
-	}
-	return (length);
-}
-
-int		ft_printf_wstr(t_printf_arg *args, va_list list)
+int	ft_printf_wstr(t_printf_arg *args, va_list list)
 {
 	int		length;
 	wchar_t	*str;
@@ -55,10 +53,8 @@ int	ft_printf_str(t_printf_arg *args, va_list list)
 	str = (val ? ft_strdup(val) : ft_strdup("(null)"));
 	if (args->set_precision == 1)
 	{
-		// if (!(cpy = (char *)malloc(sizeof(char) * args->precision)))
-		// 	return (0);
 		cpy = ft_strnew(args->precision);
-		if (str)		
+		if (str)
 			cpy = ft_strncpy(cpy, str, args->precision);
 		str = cpy;
 	}

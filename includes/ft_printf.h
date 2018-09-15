@@ -10,21 +10,30 @@
 
 typedef struct	s_printf_arg
 {
-	int fl_hash;
-	int fl_minus;
-	int fl_plus;
-	int fl_space;
-	int fl_zero;
-	int precision;
-	int set_precision;
-	int neg;
-	int length;
-	char type;
-	char notype;
-	char conv_s;
-	char conv_d;
-	int width;
+	int		fl_hash;
+	int		fl_minus;
+	int		fl_plus;
+	int		fl_space;
+	int		fl_zero;
+	int		precision;
+	int		set_precision;
+	int		neg;
+	int		length;
+	char	type;
+	char	notype;
+	char	conv_s;
+	char	conv_d;
+	int		width;
+
 }				t_printf_arg;
+
+// typedef struct	s_buff
+// {
+
+// 	char	*buffer;
+// 	int		buff_i;
+
+// }				t_buff;
 
 int			ft_printf(const char *format, ...);
 int			get_flags(t_printf_arg *args, const char *format, va_list list);
@@ -37,7 +46,7 @@ int 		ft_printf_conv_binary(t_printf_arg *args, char *binary);
 int			ft_printf_hexa(t_printf_arg *args, va_list list);
 int			ft_printf_char(t_printf_arg *args, va_list list);
 int			ft_deal_nbr_str(t_printf_arg *args, uintmax_t nb, int base);
-void		ft_printf_float(t_printf_arg *args, double nb);
+int			ft_printf_float(t_printf_arg *args, double nb);
 int			ft_printf_str(t_printf_arg *args, va_list list);
 int			ft_deal_width(t_printf_arg *args);
 int			ft_get_length(intmax_t nb, int base);
@@ -47,6 +56,7 @@ char		*ft_convert_octal(long int nb);
 char		*ft_convert_base_hexa(uintmax_t nb, char base);
 int			ft_putunbr(int n);
 int			ft_putlunbr(uintmax_t n);
+int			ft_putlnbr(intmax_t n);
 int			ft_get_un_length(uintmax_t nb, int base);
 char		*ft_convert_base_str(uintmax_t nb, int base);
 
@@ -57,17 +67,5 @@ int	ft_deal_precision(t_printf_arg *args);
 int ft_deal_hash(t_printf_arg *args, uintmax_t nb);
 int	ft_deal_width(t_printf_arg *args);
 
-// Utils
-int			ft_isupper(char c);
-int			ft_islower(char c);
-char		*ft_strrev(char *str);
-int			ft_wcharlen(wchar_t wchar);
-wchar_t		*ft_wstrdup(wchar_t *src);
-size_t		ft_wstrlen(const wchar_t *wstr);
-wchar_t		*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len);
-wchar_t		*ft_wstrnew(size_t size);
-int			ft_putwchar(wchar_t wchar);
-
-void	ft_print_all_flags(t_printf_arg *args);
 
 #endif
