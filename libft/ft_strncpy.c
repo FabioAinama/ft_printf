@@ -15,19 +15,17 @@
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	size_t	i;
-	size_t	length;
 
 	i = 0;
-	length = ft_strlen(src);
-	while (i < len)
+	while (i < len && src[i])
 	{
 		dst[i] = src[i];
 		i++;
 	}
-	while (length < len)
+	while (i < len)
 	{
-		dst[length] = '\0';
-		length++;
+		dst[i] = '\0';
+		i++;
 	}
 	return ((char *)dst);
 }
