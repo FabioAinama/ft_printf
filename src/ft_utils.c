@@ -106,16 +106,12 @@ wchar_t		*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len)
 	size_t	length;
 
 	i = 0;
-	length = ft_wstrlen(src);
-	while (i < len)
+	length = ft_wcharlen(src[i]);
+	while (length < len)
 	{
 		dst[i] = src[i];
 		i += ft_wcharlen(src[i]);
 	}
-	while (length < len)
-	{
-		dst[length] = L'\0';
-		length++;
-	}
+	dst[++i] = L'\0';
 	return (dst);
 }
