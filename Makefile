@@ -12,9 +12,9 @@
 
 NAME = libftprintf.a
 
-SRC_FOLDER = src
-LIBFT_FOLDER = libft
-OBJ_FOLDER = obj
+SRC_FOLDER = src/
+LIBFT_FOLDER = libft/
+OBJ_FOLDER = obj/
 
 SRC_FILES = ft_printf.c ft_printf_decimal.c get_flags.c ft_printf_str.c ft_printf_char.c \
 	ft_convert.c ft_putlnbr.c ft_printf_float.c ft_printf_hexa.c ft_printf_octal.c ft_deal_flags.c \
@@ -26,35 +26,41 @@ LIBFT_FILES = ft_putchar.c ft_putstr.c ft_tolower.c ft_isdigit.c ft_atoi.c ft_is
 	ft_wstrdup.c ft_wstrlen.c ft_wstrncpy.c ft_wstrnew.c ft_isupper.c ft_islower.c \
 	ft_strrev.c \
 
+OBJ_SRC_NAME = $(SRC_FILES:.c=.o)
+OBJ_LIBFT_NAME = $(LIBFT_FILES:.c=.o)
 
-SRC = $(addprefix $(SRC_FOLDER)/, $(SRC_FILES))
-OBJ = $(addprefix $(OBJ_FOLDER)/,$(OBJ_NAME))
-LIBFT = $(addprefix $(LIBFT_FOLDER)/, $(LIBFT_FILES))
+SRC = $(addprefix $(SRC_FOLDER), $(SRC_FILES))
+LIBFT = $(addprefix $(LIBFT_FOLDER), $(LIBFT_FILES))
 
-OBJ_NAME = $(SRC_FILES:.c=.o) $(LIBFT_FILES:.c=.o)
+OBJ_SRC = $(addprefix $(OBJ_FOLDER), $(OBJ_SRC_NAME))
+OBJ_LIBFT = $(addprefix $(OBJ_FOLDER), $(OBJ_LIBFT_NAME))
 
-CC = gcc
+
 FLAGS = -Wall -Wextra -Werror
 INC = -Iincludes/
 
-$(NAME):
+.PHONY: all clean fclean re
+
+
+$(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.c
+	@mkdir $(OBJ_FOLDER) 2> /dev/null || true
+	@$(CC) $(FLAGS) $(INC) -o $@ -c $<
+
+$(OBJ_FOLDER)%.o: $(LIBFT_FOLDER)%.c
+	@mkdir $(OBJ_FOLDER) 2> /dev/null || true
+	@$(CC) $(FLAGS) $(INC) -o $@ -c $<
+
+$(NAME): $(OBJ_SRC) $(OBJ_LIBFT)
 	@echo "Compilation en cours..."
-	@$(CC) -c $(FLAGS) $(SRC) $(LIBFT) $(INC)
-	@ar rc $(NAME) $(OBJ_NAME)
+	@ar rc $(NAME) $(OBJ_SRC) $(OBJ_LIBFT)
 	@ranlib $(NAME)
 	@echo "$(NAME) générée avec succès!"
 
-.PHONY: all clean fclean re
-
 all : $(NAME)
 
-cp : 
-	$(CC) main.c $(SRC) -L libft/ -lft $(INC)
-run : 
-	@./a.out | cat -e
-
 clean :
-	@rm -rf $(OBJ_NAME)
+	@rm -rf $(OBJ_SRC) $(OBJ_LIBFT)
+	@rmdir $(OBJ_FOLDER) 2> /dev/null || true
 
 fclean : clean
 	@rm -rf $(NAME)
