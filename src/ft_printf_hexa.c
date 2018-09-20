@@ -54,6 +54,8 @@ char	*ft_convert_base_hexa(uintmax_t nb, char base)
 		hexa = ft_strdup("0123456789ABCDEF");
 	else
 		hexa = ft_strdup("0123456789abcdef");
+	if (!hexa)
+		return (NULL);
 	tmp = nb;
 	size = ((!nb) ? 1 : 0);
 	size += ft_get_un_length(nb, 16);

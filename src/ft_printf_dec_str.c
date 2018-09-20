@@ -42,6 +42,8 @@ int	ft_deal_nbr_str(t_printf_arg *args, uintmax_t nb, int base)
 		str_nb = ft_convert_base_hexa(nb, args->type);
 	else
 		str_nb = ft_convert_base_str(nb, base);
+	if (!str_nb)
+		return (0);
 	args->length = ft_strlen(str_nb);
 	if (args->fl_hash && args->fl_zero)
 		i += ft_deal_hash(args, nb);

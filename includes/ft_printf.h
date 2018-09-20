@@ -5,8 +5,9 @@
 # include <wchar.h>
 # include <stdarg.h>
 # include <stdlib.h>
-
+# include "libft.h"
 # include <stdio.h>
+# include <locale.h>
 
 typedef struct	s_printf_arg
 {
@@ -27,13 +28,6 @@ typedef struct	s_printf_arg
 
 }				t_printf_arg;
 
-// typedef struct	s_buff
-// {
-
-// 	char	*buffer;
-// 	int		buff_i;
-
-// }				t_buff;
 
 int			ft_printf(const char *format, ...);
 int			get_flags(t_printf_arg *args, const char *format, va_list list);
@@ -51,7 +45,7 @@ int			ft_printf_str(t_printf_arg *args, va_list list);
 int			ft_deal_width(t_printf_arg *args);
 int			ft_get_length(intmax_t nb, int base);
 int			ft_get_un_length(uintmax_t nb, int base);
-
+int			ft_dispatcher(t_printf_arg *args, va_list list, int ret);
 char		*ft_convert_octal(long int nb);
 char		*ft_convert_base_hexa(uintmax_t nb, char base);
 int			ft_putunbr(int n);
@@ -59,13 +53,11 @@ int			ft_putlunbr(uintmax_t n);
 int			ft_putlnbr(intmax_t n);
 int			ft_get_un_length(uintmax_t nb, int base);
 char		*ft_convert_base_str(uintmax_t nb, int base);
-
-// Flags
-int	ft_deal_zero(t_printf_arg *args);
-int	ft_deal_plus_space(t_printf_arg *args);
-int	ft_deal_precision(t_printf_arg *args);
-int ft_deal_hash(t_printf_arg *args, uintmax_t nb);
-int	ft_deal_width(t_printf_arg *args);
+int			ft_deal_zero(t_printf_arg *args);
+int			ft_deal_plus_space(t_printf_arg *args);
+int			ft_deal_precision(t_printf_arg *args);
+int			ft_deal_hash(t_printf_arg *args, uintmax_t nb);
+int			ft_deal_width(t_printf_arg *args);
 
 
 #endif

@@ -34,7 +34,7 @@ int	ft_printf_char(t_printf_arg *args, va_list list)
 {
 	int	length;
 
-	if (args->conv_s)
+	if (args->conv_s == 'l')
 		return (ft_printf_wchar(args, list));
 	length = sizeof(char);
 	args->length = length;
